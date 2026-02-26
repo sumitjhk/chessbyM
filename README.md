@@ -1,132 +1,203 @@
-# Welcome to your Expo app 👋
+# ♔ Chess Master
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A professional chess app built with **React Native** and **Expo Router**, featuring real 3D chess pieces, local 1v1 gameplay, and an AI opponent with 7 difficulty levels including Grandmaster.
 
-## Get started
+---
 
-1. Install dependencies
+## 📱 Screenshots
 
-   ```bash
-   npm install
-   ```
+> Add screenshots of your app here after running it on your device.
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## ✨ Features
 
-In the output, you'll find options to open the app in a
+### 🎮 Game Modes
+- **Local 1v1** — Play against a friend on the same device with flip board support
+- **Play VS Computer** — Challenge the AI across 7 difficulty levels with level progression system
+- **Online** *(Coming Soon)* — Play over network
+- **Puzzles** *(Coming Soon)* — Tactical challenges
+- **Learn Chess** *(Coming Soon)* — Master the basics and openings
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### ♟ Chess Features
+- Full chess rules powered by **chess.js**
+- Click to select piece → highlights valid moves
+- Capture ring indicators for capture moves
+- King highlight when in check (red)
+- Undo move support
+- Flip board button
+- Move history display
+- Captured pieces tracking
+- Checkmate / Stalemate / Draw detection
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### 🤖 AI Difficulty Levels
+| Level | Icon | Description |
+|-------|------|-------------|
+| Beginner | 🌱 | Just learning the game |
+| Easy | 😊 | Casual play |
+| Medium | ⚡ | A balanced challenge |
+| Hard | 🔥 | For experienced players |
+| Expert | 💎 | Serious competition |
+| Master | 👑 | Near-professional level |
+| Grandmaster | 🏆 | Maximum chess intelligence |
 
-## Get a fresh project
+> Levels are **locked by default** — beat each level to unlock the next one. Progress is saved automatically.
 
-When you're ready, run:
+### 🎨 UI Design
+- Premium dark luxury theme (`#0D0D0D` background)
+- Gold (`#D4A843`) and silver piece sets — real 3D images
+- Classic wooden board colors (`#F0D9B5` / `#B58863`)
+- Gold glow board frame
+- Player panels with turn indicators
+- Animated AI thinking spinner
 
-```bash
-npm run reset-project
+---
+
+## 🗂 Project Structure
+
 ```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-D:\che\chessApp\
-│
-├── app\
-│   ├── (tabs)\
-│   │   ├── index.tsx          ← dashboard
+chessApp/
+├── app/
+│   ├── (tabs)/
+│   │   ├── index.tsx          # Dashboard / Home screen
 │   │   ├── explore.tsx
 │   │   └── _layout.tsx
-│   ├── game\
-│   │   ├── local.tsx          ← 1v1 game ✅
-│   │   └── ai.tsx             ← NEW: vs Computer
+│   ├── game/
+│   │   ├── local.tsx          # Local 1v1 game screen
+│   │   └── ai.tsx             # VS Computer game screen
 │   ├── modal.tsx
 │   └── _layout.tsx
 │
-├── assets\
-│   ├── images\
-│   │   ├── chess-bg.jpg
-│   │   ├── icon.png
-│   │   └── splash-icon.png
-│   └── pieces\                ← chess piece images ✅
-│       ├── wK.png ... wP.png
-│       └── bK.png ... bP.png
+├── assets/
+│   ├── images/
+│   │   └── chess-bg.jpg       # Dashboard background
+│   └── pieces/                # 3D chess piece images
+│       ├── wK.png  wQ.png  wR.png  wB.png  wN.png  wP.png
+│       └── bK.png  bQ.png  bR.png  bB.png  bN.png  bP.png
 │
-├── components\
-│   ├── ui\
-│   ├── ChessBoard.tsx         ✅
-│   ├── ChessSquare.tsx        ✅
-│   └── chessBoardConstants.ts ✅
+├── components/
+│   ├── ChessBoard.tsx          # 8x8 board with labels
+│   ├── ChessSquare.tsx         # Individual square with piece images
+│   └── chessBoardConstants.ts  # SQUARE_SIZE, BOARD_SIZE constants
 │
-├── styles\
-│   ├── homeStyles.ts          ✅
-│   ├── localStyles.ts         ✅
-│   └── aiStyles.ts            ← NEW
+├── styles/
+│   ├── homeStyles.ts           # Dashboard styles
+│   ├── localStyles.ts          # Local game styles
+│   └── aiStyles.ts             # AI game styles
 │
-├── services\
-│   └── ChessAI.ts             ← AI logic goes here
+├── services/
+│   └── ChessAI.ts              # Minimax AI with alpha-beta pruning
 │
-├── types\
+├── types/
 │   └── chess.d.ts
 │
-├── constants\
+├── constants/
 │   └── theme.ts
 │
-├── hooks\
-│   ├── use-color-scheme.ts
-│   └── use-theme-color.ts
-│
 └── package.json
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+
+- Expo CLI
+- Android Studio or physical Android/iOS device with Expo Go app
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/chessApp.git
+cd chessApp
+
+# Install dependencies
+npm install
+
+# Install AsyncStorage
+npx expo install @react-native-async-storage/async-storage
+
+# Start the development server
+npx expo start --clear
+```
+
+### Running on Device
+1. Install **Expo Go** from Play Store / App Store
+2. Scan the QR code shown in terminal
+3. App will load on your device
+
+---
+
+## 🧠 AI Engine
+
+The AI uses **Minimax algorithm with Alpha-Beta Pruning** and **Piece-Square Tables** for positional evaluation.
+
+### How it works:
+- **Material evaluation** — values each piece (Pawn=100, Knight=320, Bishop=330, Rook=500, Queen=900)
+- **Positional evaluation** — rewards good piece placement using piece-square tables
+- **Mobility bonus** — rewards having more available moves
+- **Move ordering** — evaluates captures first for better pruning efficiency
+- **Depth scaling** — higher difficulty = deeper search tree
+
+### Difficulty → Search Depth:
+```
+Beginner  → depth 1  (80% random moves)
+Easy      → depth 2  (40% random moves)
+Medium    → depth 3
+Hard      → depth 4
+Expert    → depth 5
+Master    → depth 6
+Grandmaster → depth 7
+```
+
+---
+
+## 📦 Dependencies
+
+| Package | Version | Purpose |
+|---------|---------|---------|
+| expo | ~52.x | App framework |
+| expo-router | ~4.x | File-based routing |
+| chess.js | ^1.x | Chess rules engine |
+| @react-native-async-storage/async-storage | ^2.x | Save AI progress |
+| react-native | 0.76.x | UI framework |
+
+---
+
+## 🛣 Roadmap
+
+- [x] Local 1v1 game
+- [x] AI opponent with 7 difficulty levels
+- [x] Level progression system
+- [x] Real 3D chess piece images
+- [x] Undo move
+- [x] Move history
+- [ ] Online multiplayer
+- [ ] Chess puzzles
+- [ ] Learn Chess section
+- [ ] Move sound effects
+- [ ] Game timer / clock
+- [ ] Pawn promotion UI
+- [ ] Player profiles & stats
+- [ ] Stockfish engine integration
+
+---
+
+## 👨‍💻 Built With
+
+- [React Native](https://reactnative.dev/)
+- [Expo](https://expo.dev/)
+- [chess.js](https://github.com/jhlywa/chess.js)
+- [Expo Router](https://expo.github.io/router/)
+
+---
+
+## 📄 License
+
+This project is for personal/educational use.
+
+---
+
+> Made with ♟ and passion for chess
