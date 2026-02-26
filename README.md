@@ -48,3 +48,85 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+D:\che\chessApp\
+│
+├── app\
+│   ├── (tabs)\
+│   │   ├── index.tsx          ← dashboard
+│   │   ├── explore.tsx
+│   │   └── _layout.tsx
+│   ├── game\
+│   │   ├── local.tsx          ← 1v1 game ✅
+│   │   └── ai.tsx             ← NEW: vs Computer
+│   ├── modal.tsx
+│   └── _layout.tsx
+│
+├── assets\
+│   ├── images\
+│   │   ├── chess-bg.jpg
+│   │   ├── icon.png
+│   │   └── splash-icon.png
+│   └── pieces\                ← chess piece images ✅
+│       ├── wK.png ... wP.png
+│       └── bK.png ... bP.png
+│
+├── components\
+│   ├── ui\
+│   ├── ChessBoard.tsx         ✅
+│   ├── ChessSquare.tsx        ✅
+│   └── chessBoardConstants.ts ✅
+│
+├── styles\
+│   ├── homeStyles.ts          ✅
+│   ├── localStyles.ts         ✅
+│   └── aiStyles.ts            ← NEW
+│
+├── services\
+│   └── ChessAI.ts             ← AI logic goes here
+│
+├── types\
+│   └── chess.d.ts
+│
+├── constants\
+│   └── theme.ts
+│
+├── hooks\
+│   ├── use-color-scheme.ts
+│   └── use-theme-color.ts
+│
+└── package.json

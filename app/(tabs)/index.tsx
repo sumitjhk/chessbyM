@@ -1,98 +1,149 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+/**
+ * DASHBOARD / HOME SCREEN
+ * Main entry point of the chess app
+ */
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import React from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+  ScrollView,
+  ImageBackground,
+} from 'react-native';
+import { useRouter } from 'expo-router';
+import styles from '../../styles/homeStyles';
 
 export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+  const router = useRouter();
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+  const navigateToGame = (mode: string) => {
+    router.push(`/game/${mode}` as any);
+  };
+
+  return (
+    <ImageBackground
+      source={require('@/assets/images/chess-bg.jpg')}
+      style={styles.backgroundImage}
+      resizeMode="cover"
+    >
+      <View style={styles.overlay}>
+        <SafeAreaView style={styles.container}>
+          <ScrollView contentContainerStyle={styles.scrollContent}>
+
+            {/* Header */}
+            <View style={styles.header}>
+              <Text style={styles.title}>♔ Chess Master ♚</Text>
+              <Text style={styles.subtitle}>Choose your game mode</Text>
+            </View>
+
+            {/* Game Mode Cards */}
+            <View style={styles.cardsContainer}>
+
+              {/* Local 1v1 */}
+              <TouchableOpacity
+                style={styles.card}
+                onPress={() => navigateToGame('local')}
+                activeOpacity={0.8}
+              >
+                <View style={[styles.cardContent, { backgroundColor: '#4CAF50' }]}>
+                  <Text style={styles.cardIcon}>👥</Text>
+                  <Text style={styles.cardTitle}>Local 1v1</Text>
+                  <Text style={styles.cardDescription}>
+                    Play with a friend on the same device
+                  </Text>
+                </View>
+              </TouchableOpacity>
+
+              {/* Play VS Computer */}
+              <TouchableOpacity
+                style={styles.card}
+                onPress={() => navigateToGame('ai')}
+                activeOpacity={0.8}
+              >
+                <View style={[styles.cardContent, { backgroundColor: '#2196F3' }]}>
+                  <Text style={styles.cardIcon}>🤖</Text>
+                  <Text style={styles.cardTitle}>Play VS Computer</Text>
+                  <Text style={styles.cardDescription}>
+                    Challenge the computer
+                  </Text>
+                  <Text style={styles.comingSoon}>Coming Soon</Text>
+                </View>
+              </TouchableOpacity>
+
+              {/* Online */}
+              <TouchableOpacity
+                style={styles.card}
+                onPress={() => navigateToGame('online')}
+                activeOpacity={0.8}
+              >
+                <View style={[styles.cardContent, { backgroundColor: '#FF9800' }]}>
+                  <Text style={styles.cardIcon}>🌐</Text>
+                  <Text style={styles.cardTitle}>Online</Text>
+                  <Text style={styles.cardDescription}>
+                    Play over network
+                  </Text>
+                  <Text style={styles.comingSoon}>Coming Soon</Text>
+                </View>
+              </TouchableOpacity>
+
+              {/* Puzzles */}
+              <TouchableOpacity
+                style={styles.card}
+                onPress={() => router.push('/puzzles' as any)}
+                activeOpacity={0.8}
+              >
+                <View style={[styles.cardContent, { backgroundColor: '#9C27B0' }]}>
+                  <Text style={styles.cardIcon}>🧩</Text>
+                  <Text style={styles.cardTitle}>Puzzles</Text>
+                  <Text style={styles.cardDescription}>
+                    Tactical challenges
+                  </Text>
+                  <Text style={styles.comingSoon}>Coming Soon</Text>
+                </View>
+              </TouchableOpacity>
+
+              {/* Learn Chess */}
+              <TouchableOpacity
+                style={styles.card}
+                onPress={() => router.push('/learn' as any)}
+                activeOpacity={0.8}
+              >
+                <View style={[styles.cardContent, { backgroundColor: '#E91E63' }]}>
+                  <Text style={styles.cardIcon}>📚</Text>
+                  <Text style={styles.cardTitle}>Learn Chess</Text>
+                  <Text style={styles.cardDescription}>
+                    Master the basics & openings
+                  </Text>
+                  <Text style={styles.comingSoon}>Coming Soon</Text>
+                </View>
+              </TouchableOpacity>
+
+            </View>
+
+            {/* Stats */}
+            <View style={styles.statsContainer}>
+              <Text style={styles.statsTitle}>Your Stats</Text>
+              <View style={styles.statsRow}>
+                <View style={styles.statItem}>
+                  <Text style={styles.statNumber}>0</Text>
+                  <Text style={styles.statLabel}>Games</Text>
+                </View>
+                <View style={styles.statItem}>
+                  <Text style={styles.statNumber}>0</Text>
+                  <Text style={styles.statLabel}>Wins</Text>
+                </View>
+                <View style={styles.statItem}>
+                  <Text style={styles.statNumber}>0</Text>
+                  <Text style={styles.statLabel}>Puzzles</Text>
+                </View>
+              </View>
+            </View>
+
+          </ScrollView>
+        </SafeAreaView>
+      </View>
+    </ImageBackground>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
